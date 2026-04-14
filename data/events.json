@@ -1,0 +1,72 @@
+[
+  {
+    "id": "bronco-build-it-2026-03-22",
+    "title": "Bronco Build It",
+    "date": "2026-03-22",
+    "time": "2:30 PM",
+    "location": "WMU Student Center",
+    "description": "A weekly workspace for homework, side projects, and launching a business. Meets in the WMU Student Center RSO Lounge.",
+    "image": "/images/bronco/bronco3.jpg",
+    "href": "https://experiencewmu.wmich.edu/event/12336155"
+  },
+  {
+    "id": "bronco-build-it-2026-03-29",
+    "title": "Bronco Build It",
+    "date": "2026-03-29",
+    "time": "2:30 PM",
+    "location": "WMU Student Center",
+    "description": "A weekly workspace for homework, side projects, and launching a business. Meets in the WMU Student Center RSO Lounge.",
+    "image": "/images/bronco/bronco3.jpg",
+    "href": "https://experiencewmu.wmich.edu/event/12336161"
+  },
+  {
+    "id": "bronco-build-it-2026-04-05",
+    "title": "Bronco Build It",
+    "date": "2026-04-05",
+    "time": "2:30 PM",
+    "location": "WMU Student Center",
+    "description": "A weekly workspace for homework, side projects, and launching a business. Meets in the WMU Student Center RSO Lounge.",
+    "image": "/images/bronco/bronco3.jpg",
+    "href": "https://experiencewmu.wmich.edu/event/12336162"
+  },
+  {
+    "id": "bronco-build-it-2026-04-12",
+    "title": "Bronco Build It",
+    "date": "2026-04-12",
+    "time": "2:30 PM",
+    "location": "WMU Student Center",
+    "description": "A weekly workspace for homework, side projects, and launching a business. Meets in the WMU Student Center RSO Lounge.",
+    "image": "/images/bronco/bronco3.jpg",
+    "href": "https://experiencewmu.wmich.edu/event/12336163"
+  },
+  {
+    "id": "bronco-build-it-2026-04-19",
+    "title": "Bronco Build It",
+    "date": "2026-04-19",
+    "time": "2:30 PM",
+    "location": "WMU Student Center",
+    "description": "A weekly workspace for homework, side projects, and launching a business. Meets in the WMU Student Center RSO Lounge.",
+    "image": "/images/bronco/bronco3.jpg",
+    "href": "https://experiencewmu.wmich.edu/event/12336164"
+  },
+  {
+    "id": "clawcon-michigan-2026",
+    "title": "ClawCon Michigan",
+    "date": "2026-04-16",
+    "time": "6:00 PM",
+    "location": "Crisler Center, Ann Arbor",
+    "description": "Open, social-first gathering from the OpenClaw community. Live demos of personal AI tools, Q&A, and time to meet fellow builders.",
+    "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=400,height=400/event-covers/ha/f9f3242d-e115-4856-9d13-19057fcd5529.jpg",
+    "href": "https://luma.com/clawconmichigan"
+  },
+  {
+    "id": "cultivate269-pitch-night-2026",
+    "title": "Cultivate269: The $100,000 Pitch Night",
+    "date": "2026-04-10",
+    "time": "5:00 PM",
+    "location": "WMU Student Center, Kalamazoo",
+    "description": "Pitch competition hosted by Kalamazoo Forward Ventures. Local founders compete for a share of $100,000 in front of investors.",
+    "image": "https://wwmt.com/resources/media2/16x9/1080/1320/0x32/90/cb61e00f-ec05-4296-b82e-2f90bf780fcd-Cultivate269.png",
+    "href": "https://www.eventbrite.com/e/cultivate-269-the-100000-pitch-night-tickets-1984307668653"
+  }
+]

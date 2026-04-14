@@ -8,3 +8,99 @@ body {
   background-color: #FAF7F2;
   color: #2C1810;
 }
+
+.rdp-root {
+  --rdp-accent-color: #6C4023;
+  --rdp-accent-background-color: #F2EDE5;
+  --rdp-background-color: transparent;
+  --rdp-day-height: 42px;
+  --rdp-day-width: 42px;
+  --rdp-day_button-border-radius: 9999px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-width: 38px;
+  --rdp-selected-border: none;
+  --rdp-today-color: #D4A843;
+  --rdp-weekday-opacity: 0.7;
+  --rdp-weekday-text-transform: uppercase;
+  --rdp-nav_button-height: 32px;
+  --rdp-nav_button-width: 32px;
+  --rdp-months-gap: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.rdp-root .rdp-month_caption {
+  padding: 4px 0 12px;
+}
+
+.rdp-root .rdp-caption_label {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #2C1810;
+}
+
+.rdp-root .rdp-nav {
+  gap: 4px;
+}
+
+.rdp-root .rdp-button_previous,
+.rdp-root .rdp-button_next {
+  color: #6C4023;
+  border-radius: 9999px;
+  transition: background-color 0.15s;
+}
+
+.rdp-root .rdp-button_previous:hover,
+.rdp-root .rdp-button_next:hover {
+  background-color: #F2EDE5;
+}
+
+.rdp-root .rdp-chevron {
+  fill: #6C4023;
+}
+
+.rdp-root .rdp-weekday {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #6B5C52;
+}
+
+.rdp-root .rdp-day_button {
+  font-size: 14px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.rdp-root .rdp-day_button:hover:not([disabled]) {
+  background-color: #F2EDE5;
+}
+
+.rdp-root .rdp-today:not(.rdp-selected) .rdp-day_button {
+  color: #D4A843;
+  font-weight: 700;
+}
+
+.rdp-root .rdp-selected .rdp-day_button {
+  background-color: #6C4023 !important;
+  color: #FAF7F2 !important;
+  font-weight: 600;
+  border: none !important;
+}
+
+.rdp-has-event:not(.rdp-selected) .rdp-day_button {
+  position: relative;
+  font-weight: 600;
+  color: #6C4023;
+}
+
+.rdp-has-event:not(.rdp-selected) .rdp-day_button::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background-color: #D4A843;
+}

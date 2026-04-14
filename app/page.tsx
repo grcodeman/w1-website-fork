@@ -3,11 +3,15 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import PillarCard from './components/PillarCard';
 import BroncoBuildIt from './components/BroncoBuildIt';
+import EventsSection from './components/EventsSection';
+import RotatingBadge from './components/RotatingBadge';
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-cream">
       <Navbar />
+
+      <RotatingBadge text="EVENTS" scrollTargetId="events" />
 
       <main className="flex-grow">
         <Hero />
@@ -33,6 +37,8 @@ export default function Home() {
             />
           </div>
         </section>
+
+        <EventsSection />
       </main>
 
       <Footer />
