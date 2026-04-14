@@ -33,7 +33,7 @@ export default function Build() {
           {/* Featured Next Session */}
           {nextSession && (
             <div className="mt-12">
-              <div className="bg-brown-deep rounded-2xl p-8 sm:p-10 flex flex-col sm:flex-row gap-8">
+              <div className="bg-brown-deep rounded-2xl p-5 sm:p-8 md:p-10 flex flex-col md:flex-row gap-8">
                 {/* Text Content */}
                 <div className="flex-1 min-w-0">
                   <p className="text-gold-bright text-sm font-semibold uppercase tracking-wider">
@@ -50,7 +50,7 @@ export default function Build() {
                     href={nextSession.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors"
+                    className="inline-flex items-center gap-2 mt-6 px-4 sm:px-6 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors text-sm sm:text-base"
                   >
                     RSVP on ExperienceWMU
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,7 +60,7 @@ export default function Build() {
                 </div>
 
                 {/* Photo Grid */}
-                <div className="hidden sm:grid grid-cols-[1.4fr_1fr] grid-rows-2 gap-2 w-[380px] h-[200px] shrink-0">
+                <div className="hidden md:grid grid-cols-[1.4fr_1fr] grid-rows-2 gap-2 w-[380px] h-[200px] shrink-0">
                   <div className="row-span-2 relative rounded-lg overflow-hidden">
                     <Image
                       src="/images/bronco/bronco3.jpg"
