@@ -50,6 +50,16 @@
     "href": "https://experiencewmu.wmich.edu/event/12336164"
   },
   {
+    "id": "esp32-workshop-2026-04-15",
+    "title": "Dev Club: Learn ESP32",
+    "date": "2026-04-15",
+    "time": "6:30 PM",
+    "location": "Parkview Engineering Campus",
+    "description": "Build a Simon Says game on an ESP32. Learn breadboards, C with Arduino IDE, GPIO, OLED displays, and MQTT. Winner gets a free t-shirt.",
+    "image": "https://se-images.campuslabs.com/clink/images/33e3b6bd-5a1d-49ed-a08f-ee56e0dde3ef09152d77-dbf6-434b-a34f-10a0b8ec99c5.png?preset=med-w",
+    "href": "https://experiencewmu.wmich.edu/event/12419056"
+  },
+  {
     "id": "clawcon-michigan-2026",
     "title": "ClawCon Michigan",
     "date": "2026-04-16",
@@ -58,6 +68,16 @@
     "description": "Open, social-first gathering from the OpenClaw community. Live demos of personal AI tools, Q&A, and time to meet fellow builders.",
     "image": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,background=white,quality=75,width=400,height=400/event-covers/ha/f9f3242d-e115-4856-9d13-19057fcd5529.jpg",
     "href": "https://luma.com/clawconmichigan"
+  },
+  {
+    "id": "art-night-kia-2026-04-23",
+    "title": "LINK: Art Night at KIA",
+    "date": "2026-04-23",
+    "time": "5:00 PM",
+    "location": "Kalamazoo Institute of Arts",
+    "description": "Evening at the KIA with hands-on art activities, guided gallery tours, live music, food, and short talks from local voices in the Kalamazoo arts scene.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9TZbQE14fTCeOO5v8joGwwr0MeITXWxONTg&s",
+    "href": "https://www.addevent.com/event/0ks62mbq4vrx"
   },
   {
     "id": "cultivate269-pitch-night-2026",
