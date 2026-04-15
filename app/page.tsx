@@ -24,7 +24,7 @@ export default function Home() {
               id="learn"
               title="Learn"
               description="Resources to go from zero to building."
-              image="/images/cards/w1_learn.png"
+              image="/images/cards/w1_learn.avif"
               href="/learn"
             />
 
@@ -32,7 +32,7 @@ export default function Home() {
               id="ecosystem"
               title="Ecosystem"
               description="We connect students to the Midwest startup network - and we keep expanding."
-              image="/images/cards/w1_ecosystem.png"
+              image="/images/cards/w1_ecosystem.avif"
               href="/ecosystem"
             />
           </div>

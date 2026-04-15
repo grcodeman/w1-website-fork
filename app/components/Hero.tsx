@@ -1,12 +1,16 @@
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <section className="relative min-h-[65vh] flex items-center justify-center px-4">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/cards/w1_hero.png')" }}
+      <Image
+        src="/images/cards/w1_hero.avif"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
       />
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/55" />
 
       <div className="relative z-10 text-center pt-16">
