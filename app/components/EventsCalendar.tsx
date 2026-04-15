@@ -68,11 +68,11 @@ export default function EventsCalendar({ eventTimestamps, initialMonthKey }: Pro
       }
     } else {
       const key = monthKey(displayMonth);
-      const todayTs = new Date().setHours(0, 0, 0, 0);
+      const todayStr = dayKey(new Date());
       cards.forEach((el) => {
         const cardMonth = el.dataset.month;
-        const cardTs = Number(el.dataset.timestamp);
-        const match = cardMonth === key && cardTs >= todayTs;
+        const cardDate = el.dataset.date ?? '';
+        const match = cardMonth === key && cardDate >= todayStr;
         el.classList.toggle('hidden', !match);
         if (match) shown += 1;
       });
