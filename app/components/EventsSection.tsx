@@ -74,8 +74,11 @@ function EventCardWrapper({ event, hidden }: { event: EventItem; hidden: boolean
 
 export default function EventsSection() {
   const now = new Date();
-  const todayTs = new Date(now).setHours(0, 0, 0, 0);
-  const initialMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const yyyy = now.getFullYear();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const initialMonthKey = `${yyyy}-${mm}`;
+  const todayStr = `${yyyy}-${mm}-${dd}`;
   const initialMonthLabel = now.toLocaleDateString('en-US', {
     month: 'long',
     year: 'numeric',
@@ -85,7 +88,7 @@ export default function EventsSection() {
 
   const visibleOnFirstPaint = new Set(
     events
-      .filter((e) => e.monthKey === initialMonthKey && e.timestamp >= todayTs)
+      .filter((e) => e.monthKey === initialMonthKey && e.date >= todayStr)
       .map((e) => e.id),
   );
   const anyVisible = visibleOnFirstPaint.size > 0;
