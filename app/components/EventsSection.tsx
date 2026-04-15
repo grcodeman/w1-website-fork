@@ -1,32 +1,9 @@
-'use client';
-
-import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/style.css';
-import {
-  events,
-  parseEventDate,
-  isSameDay,
-  getEventDates,
-  type EventItem,
-} from '@/data/events';
+import { events, type EventItem } from '@/data/events';
+import EventsCalendar from './EventsCalendarClient';
 
-function formatLongDate(d: Date): string {
-  return d.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-function EventCard({ event }: { event: EventItem }) {
-  const eventDate = parseEventDate(event);
-  const monthLabel = eventDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
-  const dayLabel = eventDate.getDate();
-  const weekdayLabel = eventDate.toLocaleDateString('en-US', { weekday: 'long' });
-
-  const cardInner = (
+function EventCardContent({ event }: { event: EventItem }) {
+  return (
     <div className="bg-warm-white rounded-2xl overflow-hidden border border-border h-full flex flex-col">
       {event.image && (
         <div className="relative aspect-video">
@@ -42,10 +19,10 @@ function EventCard({ event }: { event: EventItem }) {
       <div className="p-5 sm:p-6 flex gap-4 flex-grow">
         <div className="flex flex-col items-center justify-start shrink-0 w-14 pt-1">
           <div className="text-[11px] font-semibold tracking-wider text-gold-bright uppercase">
-            {monthLabel}
+            {event.monthLabel}
           </div>
           <div className="font-serif text-3xl leading-none text-text-primary mt-0.5">
-            {dayLabel}
+            {event.dayLabel}
           </div>
         </div>
         <div className="flex flex-col flex-grow min-w-0 border-l border-border pl-4">
@@ -53,7 +30,7 @@ function EventCard({ event }: { event: EventItem }) {
             {event.title}
           </h3>
           <div className="text-xs text-text-secondary mt-1.5 flex flex-wrap gap-x-3">
-            <span>{weekdayLabel}</span>
+            <span>{event.weekdayLabel}</span>
             <span>{event.time}</span>
           </div>
           <p className="text-sm text-text-secondary mt-1">{event.location}</p>
@@ -62,48 +39,56 @@ function EventCard({ event }: { event: EventItem }) {
       </div>
     </div>
   );
+}
 
+function EventCardWrapper({ event, hidden }: { event: EventItem; hidden: boolean }) {
+  const className = hidden ? 'h-full hidden' : 'h-full';
   if (event.href) {
     return (
-      <a href={event.href} target="_blank" rel="noopener noreferrer" className="block h-full">
-        {cardInner}
+      <a
+        data-event
+        data-date={event.date}
+        data-month={event.monthKey}
+        data-timestamp={event.timestamp}
+        href={event.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`block ${className}`}
+      >
+        <EventCardContent event={event} />
       </a>
     );
   }
-  return cardInner;
+  return (
+    <div
+      data-event
+      data-date={event.date}
+      data-month={event.monthKey}
+      data-timestamp={event.timestamp}
+      className={className}
+    >
+      <EventCardContent event={event} />
+    </div>
+  );
 }
 
 export default function EventsSection() {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [displayMonth, setDisplayMonth] = useState<Date>(() => {
-    const now = new Date();
-    return new Date(now.getFullYear(), now.getMonth(), 1);
-  });
-
-  const eventDates = useMemo(() => getEventDates(), []);
-
-  const visibleEvents = useMemo(() => {
-    if (selectedDate) {
-      return events.filter((e) => isSameDay(parseEventDate(e), selectedDate));
-    }
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return events
-      .filter((e) => {
-        const d = parseEventDate(e);
-        if (d < today) return false;
-        return (
-          d.getFullYear() === displayMonth.getFullYear() &&
-          d.getMonth() === displayMonth.getMonth()
-        );
-      })
-      .sort((a, b) => parseEventDate(a).getTime() - parseEventDate(b).getTime());
-  }, [selectedDate, displayMonth]);
-
-  const monthLabel = displayMonth.toLocaleDateString('en-US', {
+  const now = new Date();
+  const todayTs = new Date(now).setHours(0, 0, 0, 0);
+  const initialMonthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  const initialMonthLabel = now.toLocaleDateString('en-US', {
     month: 'long',
     year: 'numeric',
   });
+
+  const eventTimestamps = events.map((e) => e.timestamp);
+
+  const visibleOnFirstPaint = new Set(
+    events
+      .filter((e) => e.monthKey === initialMonthKey && e.timestamp >= todayTs)
+      .map((e) => e.id),
+  );
+  const anyVisible = visibleOnFirstPaint.size > 0;
 
   return (
     <section id="events" className="py-20 sm:py-28 px-4 bg-cream">
@@ -117,42 +102,32 @@ export default function EventsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 lg:gap-14">
           <div className="lg:sticky lg:top-28 self-start">
-            <div className="bg-warm-white rounded-2xl border border-border p-5 shadow-sm">
-              <DayPicker
-                mode="single"
-                selected={selectedDate}
-                onSelect={setSelectedDate}
-                month={displayMonth}
-                onMonthChange={setDisplayMonth}
-                modifiers={{ hasEvent: eventDates }}
-                modifiersClassNames={{ hasEvent: 'rdp-has-event' }}
-              />
-              {selectedDate && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedDate(undefined)}
-                  className="mt-4 w-full text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-hover-bg border border-border rounded-lg py-2.5 transition-colors"
-                >
-                  Clear filter
-                </button>
-              )}
-            </div>
+            <EventsCalendar
+              eventTimestamps={eventTimestamps}
+              initialMonthKey={initialMonthKey}
+            />
           </div>
 
-          <div>
-            {visibleEvents.length === 0 ? (
-              <div className="text-center py-16 text-text-secondary">
-                {selectedDate
-                  ? `No events on ${formatLongDate(selectedDate)}`
-                  : `No events in ${monthLabel}`}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                {visibleEvents.map((event) => (
-                  <EventCard key={event.id} event={event} />
-                ))}
-              </div>
-            )}
+          <div id="events-list">
+            <div
+              data-empty-state
+              className={
+                anyVisible
+                  ? 'text-center py-16 text-text-secondary hidden'
+                  : 'text-center py-16 text-text-secondary'
+              }
+            >
+              No events in {initialMonthLabel}
+            </div>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              {events.map((event) => (
+                <EventCardWrapper
+                  key={event.id}
+                  event={event}
+                  hidden={!visibleOnFirstPaint.has(event.id)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
