@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter } from 'next/font/google';
 import Script from 'next/script';
-import SmoothScroll from './components/SmoothScroll';
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -28,14 +27,14 @@ export const metadata: Metadata = {
     description: "A student startup community across Western Michigan and beyond.",
     url: "https://www.w1build.com",
     siteName: "W1 @ WMU",
-    images: [{ url: "/images/cards/w1_hero.png" }],
+    images: [{ url: "/images/cards/w1_hero_og.jpg" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "W1 @ WMU",
     description: "A student startup community across Western Michigan and beyond.",
-    images: ["/images/cards/w1_hero.png"],
+    images: ["/images/cards/w1_hero_og.jpg"],
   },
 };
 
@@ -56,7 +55,6 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "te0c41vr61");
           `}
         </Script>
-        <SmoothScroll />
         {children}
       </body>
     </html>

@@ -34,14 +34,13 @@ export default function RotatingBadge({
       aria-label={onClick ? `Jump to ${text.toLowerCase()} section` : text}
       role={onClick ? 'button' : undefined}
     >
-      <div className="w-full h-full animate-[spin_20s_linear_infinite] relative">
+      <div className="rotate-badge w-full h-full relative">
         <Image
           src="/images/badge/badge.png"
           alt=""
           fill
           sizes="140px"
           className="object-contain"
-          priority
         />
         <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0">
           <defs>
