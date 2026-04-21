@@ -84,7 +84,7 @@ export default function EventsSection() {
     year: 'numeric',
   });
 
-  const eventTimestamps = events.map((e) => e.timestamp);
+  const eventDates = events.map((e) => e.date);
 
   const visibleOnFirstPaint = new Set(
     events
@@ -106,7 +106,7 @@ export default function EventsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 lg:gap-14">
           <div className="lg:sticky lg:top-28 self-start">
             <EventsCalendar
-              eventTimestamps={eventTimestamps}
+              eventDates={eventDates}
               initialMonthKey={initialMonthKey}
             />
           </div>
