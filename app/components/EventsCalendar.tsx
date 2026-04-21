@@ -5,8 +5,8 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/style.css';
 
 interface Props {
-  /** Unix ms timestamps of every event date, precomputed on the server. */
-  eventTimestamps: number[];
+  /** YYYY-MM-DD strings for every event, rebuilt as local-midnight Dates on the client. */
+  eventDates: string[];
   /** YYYY-MM of the calendar's initial month. */
   initialMonthKey: string;
 }
@@ -35,17 +35,22 @@ function formatMonthLabel(key: string): string {
   });
 }
 
-export default function EventsCalendar({ eventTimestamps, initialMonthKey }: Props) {
+export default function EventsCalendar({ eventDates, initialMonthKey }: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [displayMonth, setDisplayMonth] = useState<Date>(() => {
     const [y, m] = initialMonthKey.split('-').map(Number);
     return new Date(y, m - 1, 1);
   });
 
-  // DayPicker needs Date objects. Reconstruct once from the serialized prop.
-  const eventDatesRef = useRef<Date[] | null>(null);
-  if (eventDatesRef.current === null) {
-    eventDatesRef.current = eventTimestamps.map((t) => new Date(t));
+  // DayPicker needs Date objects in local time so the right calendar cell lights up.
+  // Parsing "YYYY-MM-DD" via `new Date(str)` yields UTC midnight, which shifts a day
+  // in negative-offset timezones — build from components instead.
+  const eventDatesRef = useRef<Date[]>([]);
+  if (eventDatesRef.current.length === 0 && eventDates.length > 0) {
+    eventDatesRef.current = eventDates.map((s) => {
+      const [y, m, d] = s.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    });
   }
 
   useEffect(() => {

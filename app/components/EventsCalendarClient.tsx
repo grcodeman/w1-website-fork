@@ -17,7 +17,7 @@ function Skeleton() {
 }
 
 export default function EventsCalendarClient(props: {
-  eventTimestamps: number[];
+  eventDates: string[];
   initialMonthKey: string;
 }) {
   return (
