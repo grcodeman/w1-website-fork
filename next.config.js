@@ -9,6 +9,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'www.trumba.com' },
       { protocol: 'https', hostname: 'img.evbuc.com' },
       { protocol: 'https', hostname: 'startgarden.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
     ],
   },
 };

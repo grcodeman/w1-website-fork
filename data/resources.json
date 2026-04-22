@@ -3,6 +3,14 @@
     "title": "YC Startup School",
     "url": "https://www.startupschool.org/",
     "description": "Free online program from Y Combinator. Start here.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Y_Combinator_logo.svg",
+    "featured": true
+  },
+  {
+    "title": "WMU Starting Gate",
+    "url": "https://wmich.edu/startinggate",
+    "description": "Yearlong WMU program that walks student founders through business plans, pitch decks, cash flow, and funding.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3xp-FrA4RbLzl2JzWm4_rESBHCfeW_stWA&s",
     "featured": true
   }
 ]
