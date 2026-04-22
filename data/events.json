@@ -70,6 +70,16 @@
     "href": "https://luma.com/clawconmichigan"
   },
   {
+    "id": "student-software-showcase-2026-04-22",
+    "title": "Student Software Showcase",
+    "date": "2026-04-22",
+    "time": "5:30 PM",
+    "location": "Floyd Hall D-212, Parkview Engineering Campus",
+    "description": "Show off your projects and businesses at Dev Club's last event of the semester. Free Canes, lemonade, and cookies.",
+    "image": "https://se-images.campuslabs.com/clink/images/7b8918ef-df8b-4c5b-b544-2650bbf7aa63a98ebae5-af96-4ce3-a631-8a747f69423a.png?preset=med-w",
+    "href": "https://experiencewmu.wmich.edu/event/12438115"
+  },
+  {
     "id": "art-night-kia-2026-04-23",
     "title": "LINK: Art Night at KIA",
     "date": "2026-04-23",
@@ -80,6 +90,36 @@
     "href": "https://www.addevent.com/event/0ks62mbq4vrx"
   },
   {
+    "id": "kalamazoo-venture-tuesday-2026-04-28",
+    "title": "Kalamazoo Venture Tuesday",
+    "date": "2026-04-28",
+    "time": "9:00 AM",
+    "location": "Online (Microsoft Teams)",
+    "description": "Free virtual pitch event hosted by the WMed Innovation Center. Three investors give live feedback to three presenting companies on what they did right and wrong.",
+    "image": "https://www.trumba.com/i/DgAtX5g7IfuEAXO7c1SghLkv.jpg",
+    "href": "https://wmed.edu/calendar?trumbaEmbed=view%3Devent%26eventid%3D198164042"
+  },
+  {
+    "id": "start-garden-5x5-night-2026-04-28",
+    "title": "April 5x5 Night",
+    "date": "2026-04-28",
+    "time": "5:00 PM",
+    "location": "Start Garden Vault, 2 Fulton St W, Grand Rapids",
+    "description": "Five Michigan innovators get five minutes each to pitch. One walks away with $5,000. Open pitch competition hosted by Start Garden.",
+    "image": "https://startgarden.com/wp-content/uploads/2024/01/5x5_logo.png",
+    "href": "https://startgarden.com/start-garden-event/april-5x5-night/"
+  },
+  {
+    "id": "founders-first-friday-2026-05-01",
+    "title": "Founders First Friday",
+    "date": "2026-05-01",
+    "time": "10:00 AM",
+    "location": "Start Garden Vault, 2 Fulton St W, Grand Rapids",
+    "description": "Agenda-free morning meetup for founders to connect, share challenges, and be resources for each other. Hosted by Start Garden on the first Friday of each month.",
+    "image": "https://startgarden.com/wp-content/uploads/2026/02/large-SG226_web_FoundersFirstFriday.png",
+    "href": "https://startgarden.com/start-garden-event/founders-first-friday-2/"
+  },
+  {
     "id": "cultivate269-pitch-night-2026",
     "title": "Cultivate269: The $100,000 Pitch Night",
     "date": "2026-04-10",
@@ -88,5 +128,15 @@
     "description": "Pitch competition hosted by Kalamazoo Forward Ventures. Local founders compete for a share of $100,000 in front of investors.",
     "image": "https://wwmt.com/resources/media2/16x9/1080/1320/0x32/90/cb61e00f-ec05-4296-b82e-2f90bf780fcd-Cultivate269.png",
     "href": "https://www.eventbrite.com/e/cultivate-269-the-100000-pitch-night-tickets-1984307668653"
+  },
+  {
+    "id": "startup-zoo-pitch-night-2026-05-15",
+    "title": "Startup Zoo Pitch Night",
+    "date": "2026-05-15",
+    "time": "6:00 PM",
+    "location": "229 East Michigan Avenue, Suite 335, Kalamazoo",
+    "description": "Five finalists pitch their startups for $10,000 in equity-free capital. Audience favorite wins an additional $1,000. Hosted by Startup Zoo.",
+    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1103090103%2F1321853764763%2F1%2Foriginal.20250822-232426?crop=focalpoint&fit=crop&w=1880&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.00517045454545&fp-y=0.00448504983389&s=307961648206733ccc258b6bd601c947",
+    "href": "https://www.eventbrite.com/e/pitch-night-tickets-491562585927"
   }
 ]
