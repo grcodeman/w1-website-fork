@@ -18,7 +18,6 @@ function Skeleton() {
 
 export default function EventsCalendarClient(props: {
   eventDates: string[];
-  initialMonthKey: string;
 }) {
   return (
     <Suspense fallback={<Skeleton />}>

@@ -7,8 +7,6 @@ import 'react-day-picker/style.css';
 interface Props {
   /** YYYY-MM-DD strings for every event, rebuilt as local-midnight Dates on the client. */
   eventDates: string[];
-  /** YYYY-MM of the calendar's initial month. */
-  initialMonthKey: string;
 }
 
 function monthKey(d: Date): string {
@@ -35,11 +33,13 @@ function formatMonthLabel(key: string): string {
   });
 }
 
-export default function EventsCalendar({ eventDates, initialMonthKey }: Props) {
+export default function EventsCalendar({ eventDates }: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  // This component is client-only (`ssr: false`), so `new Date()` here is the
+  // viewer's real "now" — not the build-time date the server component would see.
   const [displayMonth, setDisplayMonth] = useState<Date>(() => {
-    const [y, m] = initialMonthKey.split('-').map(Number);
-    return new Date(y, m - 1, 1);
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
   });
 
   // DayPicker needs Date objects in local time so the right calendar cell lights up.

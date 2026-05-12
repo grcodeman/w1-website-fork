@@ -6,6 +6,11 @@ import BroncoBuildIt from './components/BroncoBuildIt';
 import EventsSection from './components/EventsSection';
 import RotatingBadge from './components/RotatingBadge';
 
+// EventsSection derives "today" from `new Date()`. Without revalidation that's
+// frozen at build time, so the server-rendered events list would stay stuck on
+// whatever month the site was last deployed in. Refresh the static HTML hourly.
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-cream">
