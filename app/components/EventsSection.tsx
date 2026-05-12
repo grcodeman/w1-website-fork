@@ -105,10 +105,7 @@ export default function EventsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 lg:gap-14">
           <div className="lg:sticky lg:top-28 self-start">
-            <EventsCalendar
-              eventDates={eventDates}
-              initialMonthKey={initialMonthKey}
-            />
+            <EventsCalendar eventDates={eventDates} />
           </div>
 
           <div id="events-list">
