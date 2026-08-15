@@ -138,5 +138,80 @@
     "description": "Five finalists pitch their startups for $10,000 in equity-free capital. Audience favorite wins an additional $1,000. Hosted by Startup Zoo.",
     "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1103090103%2F1321853764763%2F1%2Foriginal.20250822-232426?crop=focalpoint&fit=crop&w=1880&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.00517045454545&fp-y=0.00448504983389&s=307961648206733ccc258b6bd601c947",
     "href": "https://www.eventbrite.com/e/pitch-night-tickets-491562585927"
+  },
+  {
+    "id": "start-garden-5x5-night-2026-08-25",
+    "title": "August 5x5 Night",
+    "date": "2026-08-25",
+    "time": "5:00 PM",
+    "location": "Birch & Blossom, 112 E Main St, Hart",
+    "description": "Five entrepreneurs get five minutes and five slides each to pitch a panel of judges and a live audience. One walks away with $5,000. Hosted by Start Garden with West Michigan economic development partners.",
+    "image": "https://startgarden.com/wp-content/uploads/2024/01/5x5_logo.png",
+    "href": "https://contests.startgarden.com/5x5night/"
+  },
+  {
+    "id": "one-million-cups-kalamazoo-2026-09-02",
+    "title": "1 Million Cups Kalamazoo",
+    "date": "2026-09-02",
+    "time": "8:00 AM",
+    "location": "WMed Innovation Center, 4717 Campus Drive, Kalamazoo",
+    "description": "Free monthly morning meetup where early-stage founders present their companies to a room of entrepreneurs, mentors, and advisers. Each presenter gets six minutes, then opens the floor for questions.",
+    "href": "https://www.1millioncups.com/kalamazoo"
+  },
+  {
+    "id": "pitchmi-defense-aerospace-2026-09-15",
+    "title": "PitchMI Semifinal: Defense & Aerospace",
+    "date": "2026-09-15",
+    "time": "3:00 PM",
+    "location": "Grand Rapids Civic Theatre",
+    "description": "Defense and aerospace semifinal of PitchMI, presented by the MSU Research Foundation and the MEDC. The winner takes $250,000 and advances to the statewide championship for another $1 million.",
+    "href": "https://luma.com/techweek-8jqi"
+  },
+  {
+    "id": "sw-michigan-summit-pitch-night-2026-09-21",
+    "title": "SW Michigan Summit: Pitch Night",
+    "date": "2026-09-21",
+    "time": "6:00 PM",
+    "location": "Kalamazoo Institute of Arts, 314 S Park St, Kalamazoo",
+    "description": "Five founders take the stage with five minutes each to pitch the judges. One goes home with $10,000. Opening night of the Southwest Michigan Entrepreneurship Summit, hosted by Startup Zoo.",
+    "image": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1103090103%2F1321853764763%2F1%2Foriginal.20250822-232426?crop=focalpoint&fit=crop&w=1880&auto=format%2Ccompress&q=75&sharp=10&fp-x=0.00517045454545&fp-y=0.00448504983389&s=307961648206733ccc258b6bd601c947",
+    "href": "https://startupzoo.org/summit/"
+  },
+  {
+    "id": "sw-michigan-entrepreneurship-summit-2026-09-22",
+    "title": "SW Michigan Entrepreneurship Summit",
+    "date": "2026-09-22",
+    "time": "10:00 AM",
+    "location": "Kalamazoo Institute of Arts, 314 S Park St, Kalamazoo",
+    "description": "Over 100 founders and funders gather from 10 AM to 4 PM to dig into how tomorrow's Michigan companies get funded and built. Hosted by Startup Zoo.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9TZbQE14fTCeOO5v8joGwwr0MeITXWxONTg&s",
+    "href": "https://startupzoo.org/summit/"
+  },
+  {
+    "id": "pitchmi-ai-software-2026-09-22",
+    "title": "PitchMI Semifinal: AI & Software",
+    "date": "2026-09-22",
+    "time": "5:00 PM",
+    "location": "Kalamazoo Civic Theatre, 329 S Park St, Kalamazoo",
+    "description": "AI and software semifinal of PitchMI, presented by the MSU Research Foundation and the MEDC. The winner takes $250,000 and advances to the statewide championship for another $1 million.",
+    "href": "https://luma.com/p86i6gat"
+  },
+  {
+    "id": "pitchmi-advanced-manufacturing-2026-09-24",
+    "title": "PitchMI Semifinal: Advanced Manufacturing, Materials & Outdoors",
+    "date": "2026-09-24",
+    "time": "1:00 PM",
+    "location": "Northern Center, Marquette",
+    "description": "Advanced manufacturing, materials, and outdoors semifinal of PitchMI, presented by the MSU Research Foundation and the MEDC. The winner takes $250,000 and advances to the statewide championship for another $1 million.",
+    "href": "https://luma.com/2191zwan"
+  },
+  {
+    "id": "pitchmi-healthcare-life-sciences-2026-10-01",
+    "title": "PitchMI Semifinal: Healthcare & Life Sciences",
+    "date": "2026-10-01",
+    "time": "5:00 PM",
+    "location": "The Department at Hudson's, Detroit",
+    "description": "Healthcare and life sciences semifinal of PitchMI, presented by the MSU Research Foundation and the MEDC. The winner takes $250,000 and advances to the statewide championship for another $1 million.",
+    "href": "https://luma.com/omfpehhu"
   }
 ]
