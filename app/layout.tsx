@@ -17,10 +17,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "W1 @ WMU",
+  metadataBase: new URL("https://www.w1build.com"),
+  title: {
+    default: "W1 @ WMU",
+    template: "%s | W1 @ WMU",
+  },
   description: "A student startup community across Western Michigan and beyond.",
   icons: {
     icon: [{ url: '/w1_logo.png' }],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
   openGraph: {
     title: "W1 @ WMU",
@@ -38,6 +53,45 @@ export const metadata: Metadata = {
   },
 };
 
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.w1build.com/#organization',
+      name: 'W1',
+      alternateName: 'W1 @ WMU',
+      url: 'https://www.w1build.com',
+      logo: 'https://www.w1build.com/w1_logo.png',
+      description:
+        'A student startup community based at Western Michigan University in Kalamazoo, connecting student founders across Western Michigan and beyond.',
+      location: {
+        '@type': 'Place',
+        name: 'Western Michigan University',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Kalamazoo',
+          addressRegion: 'MI',
+          addressCountry: 'US',
+        },
+      },
+      sameAs: [
+        'https://www.instagram.com/developerclubwmu/',
+        'https://discord.com/invite/G9yE5s6NFM',
+        'https://www.linkedin.com/company/w1build/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.w1build.com/#website',
+      name: 'W1 @ WMU',
+      url: 'https://www.w1build.com',
+      description: 'A student startup community across Western Michigan and beyond.',
+      publisher: { '@id': 'https://www.w1build.com/#organization' },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,7 +99,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
+      </head>
       <body className={`${instrumentSerif.variable} ${inter.variable} font-sans antialiased`}>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3 focus:bg-warm-white"
+        >
+          Skip to content
+        </a>
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

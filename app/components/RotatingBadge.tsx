@@ -27,14 +27,15 @@ export default function RotatingBadge({
   const repetitions = getRepetitions(text);
   const offsetIncrement = 100 / repetitions;
 
+  // The rotating ring repeats the text visually, so it lives in an aria-hidden
+  // wrapper with an invisible button overlay — a label on a control containing
+  // the repeated text could never match its visible content (WCAG 2.5.3).
   return (
     <div
-      className={`${className} w-[96px] h-[96px] md:w-[124px] md:h-[124px] lg:w-[160px] lg:h-[160px] ${onClick ? 'cursor-pointer' : ''} z-40`}
-      onClick={onClick}
-      aria-label={onClick ? `Jump to ${text.toLowerCase()} section` : text}
-      role={onClick ? 'button' : undefined}
+      className={`${className} w-[96px] h-[96px] md:w-[124px] md:h-[124px] lg:w-[160px] lg:h-[160px] z-40`}
     >
-      <div className="rotate-badge w-full h-full relative">
+      <div aria-hidden="true" className="w-full h-full">
+        <div className="rotate-badge w-full h-full relative">
         <Image
           src="/images/badge/badge.png"
           alt=""
@@ -42,7 +43,7 @@ export default function RotatingBadge({
           sizes="140px"
           className="object-contain"
         />
-        <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0">
+        <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0" aria-hidden="true">
           <defs>
             <path
               id="rotating-badge-circle"
@@ -66,21 +67,31 @@ export default function RotatingBadge({
         </svg>
       </div>
 
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg
-          className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <svg
+            className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </div>
       </div>
+
+      {onClick && (
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Jump to ${text.toLowerCase()} section`}
+          className="absolute inset-0 cursor-pointer"
+        />
+      )}
     </div>
   );
 }

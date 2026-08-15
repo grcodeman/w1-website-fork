@@ -17,16 +17,16 @@ export default function PortfolioCard({ name, image, url }: PortfolioCardProps) 
       <div className="relative aspect-video bg-hover-bg">
         <Image
           src={image}
-          alt={name}
+          alt=""
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="p-5">
-        <h3 className="font-serif text-xl text-text-primary">
+        <h2 className="font-serif text-xl text-text-primary">
           {name}
-        </h3>
+        </h2>
       </div>
     </a>
   );

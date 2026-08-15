@@ -84,8 +84,15 @@ body {
 }
 
 .rdp-root .rdp-today:not(.rdp-selected) .rdp-day_button {
-  color: #D4A843;
+  color: #8A6D15;
   font-weight: 700;
+}
+
+/* DayPicker's default weekday-header gray fails WCAG contrast on our cream background;
+   it also applies opacity, which would dilute any color override. */
+.rdp-root .rdp-weekday {
+  color: #6B5C52;
+  opacity: 1;
 }
 
 .rdp-root .rdp-selected .rdp-day_button {

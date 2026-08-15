@@ -9,10 +9,9 @@ const EventsCalendar = dynamic(() => import('./EventsCalendar'), {
 
 function Skeleton() {
   return (
-    <div
-      aria-hidden
-      className="bg-warm-white rounded-2xl border border-border shadow-sm h-[380px]"
-    />
+    <div className="bg-warm-white rounded-2xl border border-border shadow-sm h-[380px]">
+      <span className="sr-only">Loading events calendar</span>
+    </div>
   );
 }
 

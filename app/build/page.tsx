@@ -1,7 +1,60 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { sessionLinks, formatSessionDate, getNextSession } from '@/data/bronco-build-it-links';
+import {
+  sessionLinks,
+  formatSessionDate,
+  getNextSession,
+  type SessionLink,
+} from '@/data/bronco-build-it-links';
+
+// This page derives "today" from `new Date()`. Without revalidation that's frozen
+// at build time, so upcoming/past would stay stuck on the last deploy date.
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: 'Bronco Build It',
+  description:
+    "W1's weekly build session at Western Michigan University: every Sunday at 2:30 PM in the WMU Student Center RSO Lounge. Bring homework, a side project, or a business and ship it alongside other student builders. RSVP for any session on ExperienceWMU.",
+  alternates: { canonical: '/build' },
+};
+
+function SessionRow({ session, muted }: { session: SessionLink; muted?: boolean }) {
+  return (
+    <div
+      className={`flex items-center justify-between bg-warm-white rounded-xl px-5 py-4 border border-border${
+        muted ? ' opacity-60' : ''
+      }`}
+    >
+      <div className="flex items-center gap-3">
+        <span className="w-2 h-2 rounded-full bg-gold-bright shrink-0" />
+        <div>
+          <p className="text-text-primary font-medium">
+            <time dateTime={session.date}>{formatSessionDate(session.date)}</time>
+          </p>
+          {session.label && (
+            <p className="text-xs text-gold-bright font-medium mt-0.5">
+              {session.label}
+            </p>
+          )}
+        </div>
+      </div>
+      <a
+        href={session.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-medium text-gold-bright hover:underline flex items-center gap-1 shrink-0 ml-4"
+      >
+        RSVP
+        <span className="sr-only"> for {formatSessionDate(session.date)}</span>
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  );
+}
 
 export default function Build() {
   const today = new Date();
@@ -14,13 +67,20 @@ export default function Build() {
     return d >= today;
   });
 
+  // Most recent first.
+  const past = sessionLinks
+    .filter((s) => new Date(s.date + 'T00:00:00') < today)
+    .reverse();
+
   const hasUpcoming = upcoming.length > 0;
 
   return (
     <div className="min-h-screen flex flex-col bg-cream">
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
 
-      <main className="flex-grow pt-32 pb-20 px-4">
+      <main id="main" className="flex-grow pt-32 pb-20 px-4">
         <div className="max-w-[800px] mx-auto">
           {/* Page Header */}
           <h1 className="font-serif text-[40px] sm:text-[48px] tracking-tight text-text-primary">
@@ -40,7 +100,9 @@ export default function Build() {
                     {hasUpcoming ? 'Next Session' : 'Most Recent Session'}
                   </p>
                   <h2 className="font-serif text-[28px] sm:text-[36px] text-text-on-dark mt-2">
-                    {formatSessionDate(nextSession.date)}
+                    <time dateTime={nextSession.date}>
+                      {formatSessionDate(nextSession.date)}
+                    </time>
                   </h2>
                   <p className="text-text-on-dark/70 mt-1 text-lg">2:30 PM</p>
                   {nextSession.label && (
@@ -53,7 +115,8 @@ export default function Build() {
                     className="inline-flex items-center gap-2 mt-6 px-4 sm:px-6 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors text-sm sm:text-base"
                   >
                     RSVP on ExperienceWMU
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <span className="sr-only"> for {formatSessionDate(nextSession.date)}</span>
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
@@ -102,40 +165,26 @@ export default function Build() {
             {/* Upcoming sessions */}
             {upcoming.length > 0 && (
               <div className="mt-8">
-                <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-4">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-4">
                   Upcoming
-                </p>
+                </h3>
                 <div className="space-y-3">
                   {upcoming.map((session) => (
-                    <div
-                      key={session.date}
-                      className="flex items-center justify-between bg-warm-white rounded-xl px-5 py-4 border border-border"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-gold-bright shrink-0" />
-                        <div>
-                          <p className="text-text-primary font-medium">
-                            {formatSessionDate(session.date)}
-                          </p>
-                          {session.label && (
-                            <p className="text-xs text-gold-bright font-medium mt-0.5">
-                              {session.label}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                      <a
-                        href={session.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium text-gold-bright hover:underline flex items-center gap-1 shrink-0 ml-4"
-                      >
-                        RSVP
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
-                    </div>
+                    <SessionRow key={session.date} session={session} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Past sessions */}
+            {past.length > 0 && (
+              <div className="mt-8">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-text-secondary mb-4">
+                  Past
+                </h3>
+                <div className="space-y-3">
+                  {past.map((session) => (
+                    <SessionRow key={session.date} session={session} muted />
                   ))}
                 </div>
               </div>

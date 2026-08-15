@@ -48,5 +48,6 @@ export function formatSessionDate(dateStr: string): string {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
+    year: 'numeric',
   });
 }

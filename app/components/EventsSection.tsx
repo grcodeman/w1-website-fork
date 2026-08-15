@@ -9,7 +9,7 @@ function EventCardContent({ event }: { event: EventItem }) {
         <div className="relative aspect-video">
           <Image
             src={event.image}
-            alt={event.title}
+            alt=""
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -17,20 +17,23 @@ function EventCardContent({ event }: { event: EventItem }) {
         </div>
       )}
       <div className="p-5 sm:p-6 flex gap-4 flex-grow">
-        <div className="flex flex-col items-center justify-start shrink-0 w-14 pt-1">
-          <div className="text-[11px] font-semibold tracking-wider text-gold-bright uppercase">
+        <time
+          dateTime={event.date}
+          className="flex flex-col items-center justify-start shrink-0 w-14 pt-1"
+        >
+          <span className="block text-[11px] font-semibold tracking-wider text-gold-deep uppercase">
             {event.monthLabel}
-          </div>
-          <div className="font-serif text-3xl leading-none text-text-primary mt-0.5">
+          </span>
+          <span className="block font-serif text-3xl leading-none text-text-primary mt-0.5">
             {event.dayLabel}
-          </div>
-        </div>
+          </span>
+        </time>
         <div className="flex flex-col flex-grow min-w-0 border-l border-border pl-4">
           <h3 className="font-serif text-[22px] leading-tight text-text-primary">
             {event.title}
           </h3>
           <div className="text-xs text-text-secondary mt-1.5 flex flex-wrap gap-x-3">
-            <span>{event.weekdayLabel}</span>
+            <span>{event.weekdayLabel}, {event.year}</span>
             <span>{event.time}</span>
           </div>
           <p className="text-sm text-text-secondary mt-1">{event.location}</p>
@@ -91,7 +94,6 @@ export default function EventsSection() {
   const yyyy = now.getFullYear();
   const mm = String(now.getMonth() + 1).padStart(2, '0');
   const dd = String(now.getDate()).padStart(2, '0');
-  const initialMonthKey = `${yyyy}-${mm}`;
   const todayStr = `${yyyy}-${mm}-${dd}`;
   const initialMonthLabel = now.toLocaleDateString('en-US', {
     month: 'long',
@@ -99,11 +101,6 @@ export default function EventsSection() {
   });
 
   const eventDates = events.map((e) => e.date);
-
-  const visibleOnFirstPaint = new Set(
-    events.filter((e) => e.monthKey === initialMonthKey).map((e) => e.id),
-  );
-  const anyVisible = visibleOnFirstPaint.size > 0;
 
   return (
     <section id="events" className="py-20 sm:py-28 px-4 bg-cream">
@@ -123,11 +120,7 @@ export default function EventsSection() {
           <div id="events-list">
             <div
               data-empty-state
-              className={
-                anyVisible
-                  ? 'text-center py-16 text-text-secondary hidden'
-                  : 'text-center py-16 text-text-secondary'
-              }
+              className="text-center py-16 text-text-secondary hidden"
             >
               No events in {initialMonthLabel}
             </div>
@@ -136,7 +129,7 @@ export default function EventsSection() {
                 <EventCardWrapper
                   key={event.id}
                   event={event}
-                  hidden={!visibleOnFirstPaint.has(event.id)}
+                  hidden={false}
                   past={event.date < todayStr}
                 />
               ))}

@@ -4,7 +4,7 @@ export default function EcosystemDirectory() {
   return (
     <div className="space-y-16">
       {ecosystemData.regions.map((region) => (
-        <div key={region.city}>
+        <section key={region.city}>
           <div className="flex items-center gap-3 mb-6">
             <h2 className="font-serif text-[28px] sm:text-[36px] tracking-tight text-text-primary">
               {region.city}
@@ -35,6 +35,7 @@ export default function EcosystemDirectory() {
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -53,7 +54,7 @@ export default function EcosystemDirectory() {
               We&apos;re building connections here. Stay tuned.
             </p>
           )}
-        </div>
+        </section>
       ))}
     </div>
   );

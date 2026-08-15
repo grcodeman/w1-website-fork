@@ -30,11 +30,14 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-border/50 transition-all duration-300">
+    <nav
+      aria-label="Main"
+      className="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-border/50 transition-all duration-300"
+    >
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/w1_logo.png" alt="W1" width={32} height={32} />
+            <Image src="/w1_logo.png" alt="W1 @ WMU home" width={32} height={32} />
           </Link>
 
           {/* Desktop nav */}
@@ -63,6 +66,7 @@ export default function Navbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
+                aria-expanded={dropdownOpen}
                 className="inline-flex items-center gap-1.5 px-4 py-2 bg-wmu-gold text-brown-deep text-sm font-semibold rounded-lg cursor-pointer"
               >
                 Get Involved
@@ -71,6 +75,7 @@ export default function Navbar() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -78,17 +83,19 @@ export default function Navbar() {
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg overflow-hidden z-20">
-                  <a
-                    href={session?.url ?? '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between px-4 py-3 text-sm font-medium bg-black text-white"
-                  >
-                    Join Event
-                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                  {session && (
+                    <a
+                      href={session.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-4 py-3 text-sm font-medium bg-black text-white"
+                    >
+                      Join Event
+                      <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
                   <a
                     href="https://discord.com/invite/G9yE5s6NFM"
                     target="_blank"
@@ -96,7 +103,7 @@ export default function Navbar() {
                     className="flex items-center justify-between px-4 py-3 text-sm font-medium bg-[#5865F2] text-white"
                   >
                     Join Discord
-                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
@@ -110,13 +117,14 @@ export default function Navbar() {
             className="md:hidden p-2 text-text-primary"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -147,14 +155,16 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href={session?.url ?? '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-[15px] font-medium text-text-secondary hover:underline"
-            >
-              Join Event
-            </a>
+            {session && (
+              <a
+                href={session.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-[15px] font-medium text-text-secondary hover:underline"
+              >
+                Join Event
+              </a>
+            )}
             <a
               href="https://discord.com/invite/G9yE5s6NFM"
               target="_blank"
