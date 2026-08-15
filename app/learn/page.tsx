@@ -1,16 +1,26 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import resources from '@/data/resources.json';
+
+export const metadata: Metadata = {
+  title: 'Learn How to Build',
+  description:
+    'A short list of startup programs W1 has vetted for student founders, including Y Combinator Startup School and the WMU Starting Gate accelerator. Start here to learn the fundamentals of shipping a product and running a business.',
+  alternates: { canonical: '/learn' },
+};
 
 export default function Learn() {
   const featured = resources.filter((r) => r.featured);
 
   return (
     <div className="min-h-screen flex flex-col bg-cream">
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
 
-      <main className="flex-grow pt-32 pb-20 px-4">
+      <main id="main" className="flex-grow pt-32 pb-20 px-4">
         <div className="max-w-[1100px] mx-auto">
           <div className="max-w-2xl">
             <div className="text-[11px] font-semibold tracking-[0.18em] text-gold-bright uppercase">
@@ -56,6 +66,7 @@ export default function Learn() {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    aria-hidden="true"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
@@ -65,7 +76,7 @@ export default function Learn() {
           </div>
 
           <div className="mt-16 pt-10 border-t border-border max-w-2xl">
-            <h3 className="font-serif text-xl text-text-primary">Know a great resource?</h3>
+            <h2 className="font-serif text-xl text-text-primary">Know a great resource?</h2>
             <p className="mt-2 text-sm text-text-secondary">
               Send suggestions to{' '}
               <a

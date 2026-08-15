@@ -28,11 +28,11 @@ export default function RotatingBadge({
   const offsetIncrement = 100 / repetitions;
 
   return (
-    <div
+    <button
+      type="button"
       className={`${className} w-[96px] h-[96px] md:w-[124px] md:h-[124px] lg:w-[160px] lg:h-[160px] ${onClick ? 'cursor-pointer' : ''} z-40`}
       onClick={onClick}
       aria-label={onClick ? `Jump to ${text.toLowerCase()} section` : text}
-      role={onClick ? 'button' : undefined}
     >
       <div className="rotate-badge w-full h-full relative">
         <Image
@@ -42,7 +42,7 @@ export default function RotatingBadge({
           sizes="140px"
           className="object-contain"
         />
-        <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0">
+        <svg viewBox="0 0 200 200" className="w-full h-full absolute inset-0" aria-hidden="true">
           <defs>
             <path
               id="rotating-badge-circle"
@@ -73,6 +73,7 @@ export default function RotatingBadge({
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth="2.5"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -81,6 +82,6 @@ export default function RotatingBadge({
           />
         </svg>
       </div>
-    </div>
+    </button>
   );
 }

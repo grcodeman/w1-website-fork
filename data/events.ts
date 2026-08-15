@@ -20,6 +20,7 @@ export interface EventItem extends RawEvent {
   monthLabel: string;
   dayLabel: number;
   weekdayLabel: string;
+  year: number;
 }
 
 function enrich(raw: RawEvent): EventItem {
@@ -31,6 +32,7 @@ function enrich(raw: RawEvent): EventItem {
     monthLabel: d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase(),
     dayLabel: d.getDate(),
     weekdayLabel: d.toLocaleDateString('en-US', { weekday: 'long' }),
+    year: d.getFullYear(),
   };
 }
 
