@@ -41,8 +41,22 @@ function EventCardContent({ event }: { event: EventItem }) {
   );
 }
 
-function EventCardWrapper({ event, hidden }: { event: EventItem; hidden: boolean }) {
-  const className = hidden ? 'h-full hidden' : 'h-full';
+function EventCardWrapper({
+  event,
+  hidden,
+  past,
+}: {
+  event: EventItem;
+  hidden: boolean;
+  past: boolean;
+}) {
+  const className = [
+    'h-full',
+    past ? 'order-1 opacity-60 grayscale' : '',
+    hidden ? 'hidden' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
   if (event.href) {
     return (
       <a
@@ -87,9 +101,7 @@ export default function EventsSection() {
   const eventDates = events.map((e) => e.date);
 
   const visibleOnFirstPaint = new Set(
-    events
-      .filter((e) => e.monthKey === initialMonthKey && e.date >= todayStr)
-      .map((e) => e.id),
+    events.filter((e) => e.monthKey === initialMonthKey).map((e) => e.id),
   );
   const anyVisible = visibleOnFirstPaint.size > 0;
 
@@ -125,6 +137,7 @@ export default function EventsSection() {
                   key={event.id}
                   event={event}
                   hidden={!visibleOnFirstPaint.has(event.id)}
+                  past={event.date < todayStr}
                 />
               ))}
             </div>
