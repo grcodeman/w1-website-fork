@@ -48,7 +48,7 @@ export default function PillarCard({
         </div>
         <p className="text-text-secondary text-sm mt-1">{description}</p>
         {footnote && (
-          <p className="text-xs text-gold-bright font-medium mt-2">{footnote}</p>
+          <p className="text-xs text-gold-deep font-medium mt-2">{footnote}</p>
         )}
       </div>
     </div>

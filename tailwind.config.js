@@ -17,6 +17,7 @@ module.exports = {
         'text-secondary': '#6B5C52',
         'text-on-dark': '#FAF7F2',
         'gold-bright': '#D4A843',
+        'gold-deep': '#8A6D15',
         'gold-subtle': '#E8D5A3',
         'border': '#E5DDD3',
         'hover-bg': '#F2EDE5',

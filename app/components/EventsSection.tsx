@@ -21,7 +21,7 @@ function EventCardContent({ event }: { event: EventItem }) {
           dateTime={event.date}
           className="flex flex-col items-center justify-start shrink-0 w-14 pt-1"
         >
-          <span className="block text-[11px] font-semibold tracking-wider text-gold-bright uppercase">
+          <span className="block text-[11px] font-semibold tracking-wider text-gold-deep uppercase">
             {event.monthLabel}
           </span>
           <span className="block font-serif text-3xl leading-none text-text-primary mt-0.5">
