@@ -60,12 +60,18 @@ export default function EventsCalendar({ eventDates }: Props) {
     const cards = list.querySelectorAll<HTMLElement>('[data-event]');
     const emptyMsg = list.querySelector<HTMLElement>('[data-empty-state]');
 
+    // Past events stay visible but grey out and sink to the bottom of the grid.
+    const pastClasses = ['order-1', 'opacity-60', 'grayscale'];
+    const todayStr = dayKey(new Date());
+
     let shown = 0;
     if (selectedDate) {
       const key = dayKey(selectedDate);
       cards.forEach((el) => {
         const match = el.dataset.date === key;
         el.classList.toggle('hidden', !match);
+        const past = (el.dataset.date ?? '') < todayStr;
+        pastClasses.forEach((c) => el.classList.toggle(c, past));
         if (match) shown += 1;
       });
       if (emptyMsg) {
@@ -73,12 +79,11 @@ export default function EventsCalendar({ eventDates }: Props) {
       }
     } else {
       const key = monthKey(displayMonth);
-      const todayStr = dayKey(new Date());
       cards.forEach((el) => {
-        const cardMonth = el.dataset.month;
-        const cardDate = el.dataset.date ?? '';
-        const match = cardMonth === key && cardDate >= todayStr;
+        const match = el.dataset.month === key;
         el.classList.toggle('hidden', !match);
+        const past = (el.dataset.date ?? '') < todayStr;
+        pastClasses.forEach((c) => el.classList.toggle(c, past));
         if (match) shown += 1;
       });
       if (emptyMsg) {

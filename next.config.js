@@ -10,6 +10,9 @@ const nextConfig = {
       { protocol: 'https', hostname: 'img.evbuc.com' },
       { protocol: 'https', hostname: 'startgarden.com' },
       { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'www.1millioncups.com' },
+      { protocol: 'https', hostname: 'images.squarespace-cdn.com' },
+      { protocol: 'https', hostname: 'cdn.prod.website-files.com' },
     ],
   },
 };
