@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter } from 'next/font/google';
 import Script from 'next/script';
 import "./globals.css";
@@ -16,15 +16,26 @@ const inter = Inter({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: "#6C4023",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.w1build.com"),
   title: {
-    default: "W1 @ WMU",
+    default: "W1 @ WMU — Student Startup Community in Kalamazoo, MI",
     template: "%s | W1 @ WMU",
   },
-  description: "A student startup community across Western Michigan and beyond.",
+  description:
+    "W1 is the student startup community at Western Michigan University — build nights, workshops, and founders shipping real products in Kalamazoo and beyond.",
+  applicationName: "W1 @ WMU",
+  manifest: "/site.webmanifest",
   icons: {
-    icon: [{ url: '/w1_logo.png' }],
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
   robots: {
     index: true,
@@ -38,17 +49,27 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "W1 @ WMU",
-    description: "A student startup community across Western Michigan and beyond.",
+    title: "W1 @ WMU — Student Startup Community in Kalamazoo, MI",
+    description:
+      "W1 is the student startup community at Western Michigan University — build nights, workshops, and founders shipping real products in Kalamazoo and beyond.",
     url: "https://www.w1build.com",
     siteName: "W1 @ WMU",
-    images: [{ url: "/images/cards/w1_hero_og.jpg" }],
+    locale: "en_US",
+    images: [
+      {
+        url: "/images/cards/w1_hero_og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Students at a W1 build night in a Western Michigan University lecture hall, with the W1 logo.",
+      },
+    ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "W1 @ WMU",
-    description: "A student startup community across Western Michigan and beyond.",
+    title: "W1 @ WMU — Student Startup Community in Kalamazoo, MI",
+    description:
+      "W1 is the student startup community at Western Michigan University — build nights, workshops, and founders shipping real products in Kalamazoo and beyond.",
     images: ["/images/cards/w1_hero_og.jpg"],
   },
 };
