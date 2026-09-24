@@ -1,4 +1,4 @@
-import { sessionLinks, formatSessionDate } from '@/data/bronco-build-it-links';
+import { SCHEDULE_SUMMARY, sessions, formatSessionDate } from '@/data/bronco-build-it';
 import { events } from '@/data/events';
 import ecosystem from '@/data/ecosystem.json';
 import portfolio from '@/data/portfolio.json';
@@ -11,7 +11,7 @@ const BASE_URL = 'https://www.w1build.com';
 
 const pages = [
   ['/', 'Home', 'Hero, the three W1 pillars (Bronco Build It, Learn, Ecosystem), and a month-by-month calendar of startup events around Western Michigan.'],
-  ['/build', 'Bronco Build It', 'Weekly Sunday 2:30 PM build session in the WMU Student Center RSO Lounge, with RSVP links for every session.'],
+  ['/build', 'Bronco Build It', `Weekly build session. ${SCHEDULE_SUMMARY}. No RSVP needed.`],
   ['/ecosystem', 'Ecosystem', 'Directory of Midwest startup organizations, accelerators, and student clubs W1 connects members to.'],
   ['/learn', 'Learn', 'Vetted programs for learning how to ship a product and run a business.'],
   ['/portfolio', 'Portfolio', 'Startups built by W1 members.'],
@@ -46,14 +46,14 @@ export function GET() {
     ``,
     `## Bronco Build It`,
     ``,
-    `Every Sunday at 2:30 PM in the WMU Student Center RSO Lounge. A weekly workspace for homework, side projects, and launching a business. Show up, build, ship. Details and RSVP links: ${BASE_URL}/build`,
+    `${SCHEDULE_SUMMARY}. A weekly workspace for homework, side projects, and launching a business. Show up, build, ship. No RSVP needed. Details: ${BASE_URL}/build`,
     ``,
     `Sessions:`,
-    ...sessionLinks.map(
+    ...sessions.map(
       (s) =>
         `- ${formatSessionDate(s.date)} (${s.date})${s.label ? ` - ${s.label}` : ''}${
           s.date < today ? ' [past]' : ''
-        }: RSVP at ${s.url}`,
+        }`,
     ),
     ``,
     `## Events`,

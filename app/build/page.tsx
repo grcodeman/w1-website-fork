@@ -3,11 +3,14 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import {
-  sessionLinks,
+  BUILD_SCHEDULE,
+  SCHEDULE_SUMMARY,
   formatSessionDate,
   getNextSession,
-  type SessionLink,
-} from '@/data/bronco-build-it-links';
+  getPastSessions,
+  getUpcomingSessions,
+  type Session,
+} from '@/data/bronco-build-it';
 
 // This page derives "today" from `new Date()`. Without revalidation that's frozen
 // at build time, so upcoming/past would stay stuck on the last deploy date.
@@ -15,12 +18,11 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Bronco Build It',
-  description:
-    "W1's weekly build session at Western Michigan University: every Sunday at 2:30 PM in the WMU Student Center RSO Lounge. Bring homework, a side project, or a business and ship it alongside other student builders. RSVP for any session on ExperienceWMU.",
+  description: `W1's weekly build session at Western Michigan University: ${SCHEDULE_SUMMARY.charAt(0).toLowerCase()}${SCHEDULE_SUMMARY.slice(1)}. Bring homework, a side project, or a business and ship it alongside other student builders. No RSVP needed.`,
   alternates: { canonical: '/build' },
 };
 
-function SessionRow({ session, muted }: { session: SessionLink; muted?: boolean }) {
+function SessionRow({ session, muted }: { session: Session; muted?: boolean }) {
   return (
     <div
       className={`flex items-center justify-between bg-warm-white rounded-xl px-5 py-4 border border-border${
@@ -40,37 +42,16 @@ function SessionRow({ session, muted }: { session: SessionLink; muted?: boolean 
           )}
         </div>
       </div>
-      <a
-        href={session.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm font-medium text-gold-bright hover:underline flex items-center gap-1 shrink-0 ml-4"
-      >
-        RSVP
-        <span className="sr-only"> for {formatSessionDate(session.date)}</span>
-        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      </a>
+      <span className="text-sm text-text-secondary shrink-0 ml-4">{BUILD_SCHEDULE.time}</span>
     </div>
   );
 }
 
 export default function Build() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
   const nextSession = getNextSession();
-
-  const upcoming = sessionLinks.filter((s) => {
-    const d = new Date(s.date + 'T00:00:00');
-    return d >= today;
-  });
-
+  const upcoming = getUpcomingSessions();
   // Most recent first.
-  const past = sessionLinks
-    .filter((s) => new Date(s.date + 'T00:00:00') < today)
-    .reverse();
+  const past = getPastSessions().reverse();
 
   const hasUpcoming = upcoming.length > 0;
 
@@ -87,8 +68,9 @@ export default function Build() {
             Bronco Build It
           </h1>
           <p className="mt-2 text-lg text-text-secondary">
-            Every Sunday at 2:30pm. Show up, build, ship.
+            Every {BUILD_SCHEDULE.day} at {BUILD_SCHEDULE.time.toLowerCase().replace(' ', '')}. Show up, build, ship.
           </p>
+          <p className="mt-1 text-text-secondary">{BUILD_SCHEDULE.location}</p>
 
           {/* Featured Next Session */}
           {nextSession && (
@@ -104,18 +86,22 @@ export default function Build() {
                       {formatSessionDate(nextSession.date)}
                     </time>
                   </h2>
-                  <p className="text-text-on-dark/70 mt-1 text-lg">2:30 PM</p>
+                  <p className="text-text-on-dark/70 mt-1 text-lg">
+                    {BUILD_SCHEDULE.time} · {BUILD_SCHEDULE.location}
+                  </p>
                   {nextSession.label && (
                     <p className="text-gold-bright mt-2 font-medium">{nextSession.label}</p>
                   )}
+                  <p className="text-text-on-dark/70 mt-4">
+                    No RSVP needed. Just show up.
+                  </p>
                   <a
-                    href={nextSession.url}
+                    href="https://discord.com/invite/G9yE5s6NFM"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-6 px-4 sm:px-6 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors text-sm sm:text-base"
                   >
-                    RSVP on ExperienceWMU
-                    <span className="sr-only"> for {formatSessionDate(nextSession.date)}</span>
+                    Join the Discord
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>

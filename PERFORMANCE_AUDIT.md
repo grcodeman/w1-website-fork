@@ -68,7 +68,7 @@ The reported slowdown maps to three things from `fbba6a1`:
 
 ### N+1 / waterfalls
 
-No true N+1. All data is static JSON imported at build time. The only mild duplication: `getNextSession()` in [data/bronco-build-it-links.ts](data/bronco-build-it-links.ts) is called once from [app/components/Navbar.tsx](app/components/Navbar.tsx) and once from [app/components/BroncoBuildIt.tsx](app/components/BroncoBuildIt.tsx). Cheap, not a real issue.
+No true N+1. All data is static JSON imported at build time. The only mild duplication: `getNextSession()` in [data/bronco-build-it.ts](data/bronco-build-it.ts) is called once from [app/components/Navbar.tsx](app/components/Navbar.tsx) and once from [app/components/BroncoBuildIt.tsx](app/components/BroncoBuildIt.tsx). Cheap, not a real issue.
 
 ### Render-blocking / hydration
 

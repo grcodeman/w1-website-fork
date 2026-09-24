@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { getNextSession } from '@/data/bronco-build-it-links';
 
 const navLinks = [
   { href: '/learn', label: 'Learn' },
@@ -17,7 +16,6 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const session = getNextSession();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -83,19 +81,6 @@ export default function Navbar() {
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg overflow-hidden z-20">
-                  {session && (
-                    <a
-                      href={session.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between px-4 py-3 text-sm font-medium bg-black text-white"
-                    >
-                      Join Event
-                      <svg className="w-3.5 h-3.5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  )}
                   <a
                     href="https://discord.com/invite/G9yE5s6NFM"
                     target="_blank"
@@ -155,16 +140,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            {session && (
-              <a
-                href={session.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[15px] font-medium text-text-secondary hover:underline"
-              >
-                Join Event
-              </a>
-            )}
             <a
               href="https://discord.com/invite/G9yE5s6NFM"
               target="_blank"

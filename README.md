@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000).
   components/           # Shared UI components
 
 /data
-  bronco-build-it-links.ts   # Sunday session RSVP links (date-based rotation)
+  bronco-build-it.ts         # Weekly session schedule (sessions generated from it)
   ecosystem.json              # City/org directory data
   portfolio.json              # Portfolio startup entries
   resources.json              # Learning resources

@@ -1,4 +1,5 @@
 import eventsData from './events.json';
+import { BUILD_SCHEDULE, sessions } from './bronco-build-it';
 
 export interface RawEvent {
   id: string;
@@ -36,6 +37,17 @@ function enrich(raw: RawEvent): EventItem {
   };
 }
 
-export const events: EventItem[] = (eventsData as RawEvent[])
+// Weekly Bronco Build It sessions come from the schedule, not events.json.
+const buildSessions: RawEvent[] = sessions.map((s) => ({
+  id: `bronco-build-it-${s.date}`,
+  title: s.label ? `Bronco Build It: ${s.label}` : 'Bronco Build It',
+  date: s.date,
+  time: BUILD_SCHEDULE.time,
+  location: BUILD_SCHEDULE.location,
+  description: 'A weekly workspace for homework, side projects, and launching a business. Show up, build, ship.',
+  image: '/images/bronco/bronco3.jpg',
+}));
+
+export const events: EventItem[] = [...(eventsData as RawEvent[]), ...buildSessions]
   .map(enrich)
   .sort((a, b) => a.timestamp - b.timestamp);

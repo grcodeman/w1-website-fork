@@ -1,4 +1,5 @@
 import { events } from '@/data/events';
+import { SCHEDULE_SUMMARY } from '@/data/bronco-build-it';
 import ecosystem from '@/data/ecosystem.json';
 import portfolio from '@/data/portfolio.json';
 import resources from '@/data/resources.json';
@@ -12,7 +13,7 @@ const BASE_URL = 'https://www.w1build.com';
 // /info and /join redirect to /, so they are not listed.
 const pages = [
   ['/', 'Home', 'Hero, the three W1 pillars (Bronco Build It, Learn, Ecosystem), and a calendar of startup events around Western Michigan.'],
-  ['/build', 'Bronco Build It', 'Weekly Sunday 2:30 PM build session in the WMU Student Center RSO Lounge, with RSVP links for every session.'],
+  ['/build', 'Bronco Build It', `Weekly build session. ${SCHEDULE_SUMMARY}. No RSVP needed.`],
   ['/ecosystem', 'Ecosystem', 'Directory of Midwest startup organizations, accelerators, and student clubs W1 connects members to.'],
   ['/learn', 'Learn', 'Vetted programs for learning how to ship a product and run a business.'],
   ['/portfolio', 'Portfolio', 'Startups built by W1 members.'],
