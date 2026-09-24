@@ -11,6 +11,7 @@ import {
   getUpcomingSessions,
   type Session,
 } from '@/data/bronco-build-it';
+import { ICS_PATH, googleCalendarUrl } from '@/data/bronco-build-it-calendar';
 
 // This page derives "today" from `new Date()`. Without revalidation that's frozen
 // at build time, so upcoming/past would stay stuck on the last deploy date.
@@ -21,6 +22,18 @@ export const metadata: Metadata = {
   description: `W1's weekly build session at Western Michigan University: ${SCHEDULE_SUMMARY.charAt(0).toLowerCase()}${SCHEDULE_SUMMARY.slice(1)}. Bring homework, a side project, or a business and ship it alongside other student builders. No RSVP needed.`,
   alternates: { canonical: '/build' },
 };
+
+function CalendarIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+  );
+}
+
+function formatShortDate(dateStr: string): string {
+  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
 
 function SessionRow({ session, muted }: { session: Session; muted?: boolean }) {
   return (
@@ -95,14 +108,35 @@ export default function Build() {
                   <p className="text-text-on-dark/70 mt-4">
                     No RSVP needed. Just show up.
                   </p>
+                  <div className="flex flex-wrap gap-3 mt-6">
+                    <a
+                      href={googleCalendarUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors text-sm sm:text-base"
+                    >
+                      <CalendarIcon />
+                      Add to Google Calendar
+                    </a>
+                    <a
+                      href={ICS_PATH}
+                      className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 border border-text-on-dark/30 text-text-on-dark font-semibold rounded-lg hover:bg-text-on-dark/10 transition-colors text-sm sm:text-base"
+                    >
+                      <CalendarIcon />
+                      Apple / Outlook
+                    </a>
+                  </div>
+                  <p className="text-sm text-text-on-dark/60 mt-3">
+                    Adds every {BUILD_SCHEDULE.day} through {formatShortDate(BUILD_SCHEDULE.endDate)}.
+                  </p>
                   <a
                     href="https://discord.com/invite/G9yE5s6NFM"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-6 px-4 sm:px-6 py-3 bg-wmu-gold text-brown-deep font-semibold rounded-lg hover:bg-gold-bright transition-colors text-sm sm:text-base"
+                    className="inline-flex items-center gap-1 mt-5 text-sm font-medium text-gold-bright hover:underline"
                   >
-                    Join the Discord
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    Join the Discord for updates
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>

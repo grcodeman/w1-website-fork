@@ -1,10 +1,20 @@
 // Bronco Build It runs on a fixed weekly schedule, so sessions are generated
 // from this config instead of being listed by hand. To change the schedule,
 // edit BUILD_SCHEDULE. To cancel a week, add its date to skipDates.
+const START_TIME = '18:30';           // 24-hour local time
+
+function to12Hour(hhmm: string): string {
+  const [h, m] = hhmm.split(':').map(Number);
+  return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`;
+}
+
 export const BUILD_SCHEDULE = {
   day: 'Friday',
   weekday: 5,                          // 0 = Sunday ... 6 = Saturday
-  time: '6:30 PM',
+  startTime: START_TIME,
+  time: to12Hour(START_TIME),          // display form, e.g. "6:30 PM"
+  durationMinutes: 120,
+  timeZone: 'America/Detroit',
   location: 'WMU Student Center RSO Office',
   startDate: '2026-09-25',             // first session on this schedule
   endDate: '2026-12-11',               // last session of the semester

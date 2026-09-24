@@ -1,4 +1,5 @@
 import { SCHEDULE_SUMMARY, sessions, formatSessionDate } from '@/data/bronco-build-it';
+import { ICS_PATH } from '@/data/bronco-build-it-calendar';
 import { events } from '@/data/events';
 import ecosystem from '@/data/ecosystem.json';
 import portfolio from '@/data/portfolio.json';
@@ -46,7 +47,7 @@ export function GET() {
     ``,
     `## Bronco Build It`,
     ``,
-    `${SCHEDULE_SUMMARY}. A weekly workspace for homework, side projects, and launching a business. Show up, build, ship. No RSVP needed. Details: ${BASE_URL}/build`,
+    `${SCHEDULE_SUMMARY}. A weekly workspace for homework, side projects, and launching a business. Show up, build, ship. No RSVP needed. Details: ${BASE_URL}/build. Calendar file (.ics): ${BASE_URL}${ICS_PATH}`,
     ``,
     `Sessions:`,
     ...sessions.map(
